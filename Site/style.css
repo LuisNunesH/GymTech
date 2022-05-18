@@ -1,6 +1,6 @@
 * {
     margin: 0;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 body{
     background-image: url("img/fundo.jpg");
@@ -16,20 +16,54 @@ body{
 }
 .item_menu {
     display: flex;
-    width: 100%;
+    width: 150%;
     flex-direction: row;
     justify-content: space-evenly;
     list-style: none;
     align-content: flex-end;
+    padding-bottom: 30px;
+}
+
+.pesquisar input {
+    width: 140px;
+    background-color: blueviolet;
+    border: none;
+    color: white;
+}
+.pesquisar img{
+    padding-left: 10px;
+    padding-top: 3px;
+}
+.pesquisar button{
+    font-weight: 800;
+    border: none;
+    color: white;
+    background-color: rgb(116, 21, 206);
+    border-radius: 0px 20px 20px 0px;
+}
+.pesquisar input:focus {
+    outline: 0;
+}
+.pesquisar{
+    display: flex;
+    flex-direction: row;
+    height: 35px;
+    background-color: blueviolet;
+    border-radius: 20px;
+}
+.sup_pesquisar{
+    padding-right: 25px;
+    padding-bottom: 25px;
 }
 a {
     text-decoration: none;
     color: white;
 }
 .imagem_menu{
+    padding-top: 20px;
     display: flex;
     width: 100%;
-    margin-left: 10%;
+    margin-left: 5%;
 }
 .menu .imagem_menu img{
     width: 130px;
