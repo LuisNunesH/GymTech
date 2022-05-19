@@ -2,8 +2,22 @@
     margin: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+@font-face {
+    font-family: Barrio;
+    src: url(fontes/Koulen-Regular.ttf)
+  }
+  @font-face {
+    font-family: Secular;
+    src: url(fontes/SecularOne-Regular.ttf)
+  }
 body{
     background-image: url("img/fundo.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+}
+.fundo{
+    background-image: url("img/academia2.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-attachment:fixed;
@@ -23,10 +37,22 @@ body{
     align-content: flex-end;
     padding-bottom: 30px;
 }
+.link{
+    font-family: Secular;
+}
 .link:hover { 
     color: rgb(243, 197, 239); 
     transition: 1.0s;
     opacity: 0.7;
+}
+.Fmenu:hover{
+    color: rgb(243, 197, 239); 
+    transition: 1.0s;
+    opacity: 0.7;
+}
+.Fmenu{
+    color: #fff;
+    font-family: Secular;
 }
 .item_menu .destaque{
     border: 1px solid white;
@@ -71,6 +97,9 @@ body{
     padding-right: 25px;
     padding-bottom: 25px;
 }
+.link a{
+    font-family: Secular;
+}
 a {
     text-decoration: none;
     color: white;
@@ -85,10 +114,74 @@ a {
     width: 130px;
     height: 110px;
 }
-footer{
-    background-color: rgb(91, 0, 151);
-    border-top: 1px solid white;
+.sup_footer{
+    display: flex;
     width: 100%;
-    height: 100px;
-    margin-bottom: 0;
+    justify-content: center;
+    background-color: rgb(54, 8, 85);
+    border-top: 1px solid white;
 }
+.footer ul{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+.sup_footer .footer{
+    background-color: rgb(54, 8, 85);
+    width: 50%;
+    height: 200px;
+    margin-bottom: 0;
+    color: white;
+}
+.img_footer img{
+    width: 50px;
+    height: 50px;
+    padding: 7px;
+    border-radius: 50px;
+}
+.img_footer{
+    display: flex;
+    padding-top: 45px;
+    justify-content: space-evenly;
+    width: 70%;
+}
+.sup_img_footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.corpo{
+    color: white;
+    font-family: Barrio;
+    font-size: 45px;
+    display: flex;
+    padding-top: 150px;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 400px;
+}
+.corpo_sup a{
+    font-family: Secular;
+    font-size: 20px;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 30px;
+}
+.corpo .corpo_sup{
+    width: 40%;
+    margin-top: 80px;
+    justify-content:space-around;
+    display: flex;
+    flex-direction: row;
+}
+.corpo_sup a:hover {
+    transform: scale(1.1);
+    transition: all 1.0s;
+  }
+  .Tfont:hover{
+    color: rgb(243, 197, 239); 
+    transition: 1.0s;
+    opacity: 0.7;
+  } 
