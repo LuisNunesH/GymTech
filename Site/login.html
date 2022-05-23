@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="imagem/png" href="img/logo GymTech.PNG" />
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" type="imagem/png" href="assets/img/logo GymTech.PNG" />
     <title>Login - GymTech</title>
+
+
 </head>
 <body>
     <div class="fundo2">
     <div class="menu">
         <div class="imagem_menu">
-            <a href="index.html"><img src="img/logo GymTech.PNG" alt=""></a>
+            <a href="index.html"><img src="assets/img/logo GymTech.PNG" alt=""></a>
         </div>
         <ul class="item_menu">
             <li><a class="link" href="index.html">Home</a></li>
@@ -22,7 +24,7 @@
         </ul>
         <div class="sup_pesquisar">
         <div class="pesquisar">
-            <img src="img/pesquisa.png" alt="" width="35px" height="30px">
+            <img src="assets/img/pesquisa.png" alt="" width="35px" height="30px">
             <input id="pesquisa">
             <button onclick="nada()">Buscar...</button>
         </div>
@@ -48,10 +50,10 @@
             </ul>
             <div class="sup_img_footer">
             <div class="img_footer">
-                <img src="img/facebookb.png" alt="" style="border: 1px solid rgb(71, 115, 197);">
-                <img src="img/twitterb.png" alt="" style="border: 1px solid rgb(216, 56, 56);">
-                <img src="img/instagramb.png" alt="" style="border: 1px solid rgb(230, 95, 95);">
-                <img src="img/youtubeb.png" alt="" style="border: 1px solid rgb(251, 255, 38);">
+                <img src="assets/img/facebookb.png" alt="" style="border: 1px solid rgb(71, 115, 197);">
+                <img src="assets/img/twitterb.png" alt="" style="border: 1px solid rgb(216, 56, 56);">
+                <img src="assets/img/instagramb.png" alt="" style="border: 1px solid rgb(230, 95, 95);">
+                <img src="assets/img/youtubeb.png" alt="" style="border: 1px solid rgb(251, 255, 38);">
             </div>
             </div>
             <br>
@@ -61,3 +63,85 @@
     </div>
 </body>
 </html>
+<script>
+    function entrar() {
+        aguardar();
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>

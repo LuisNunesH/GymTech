@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="imagem/png" href="img/logo GymTech.PNG" />
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" type="imagem/png" href="assets/img/logo GymTech.PNG" />
+    <script src="./js/funcoes.js"></script>
     <title>Cadastro - GymTech</title>
+
+
 </head>
 <body>
 <div class="fundo">
     <div class="menu">
         <div class="imagem_menu">
-            <a href="index.html"><img src="img/logo GymTech.png" alt=""></a>
+            <a href="index.html"><img src="assets/img/logo GymTech.png" alt=""></a>
         </div>
         <ul class="item_menu">
             <li><a class="Fmenu" href="index.html">Home</a></li>
@@ -22,7 +25,7 @@
         </ul>
         <div class="sup_pesquisar">
         <div class="pesquisar">
-            <img src="img/pesquisa.png" alt="" width="35px" height="30px">
+            <img src="assets/img/pesquisa.png" alt="" width="35px" height="30px">
             <input id="pesquisa">
             <button onclick="nada()">Buscar...</button>
         </div>
@@ -30,11 +33,12 @@
     </div>
     <div class="corpoL">
         <div class="caixaL">
-            <img src="img/usuario.png" width="80px" height="80px" alt="">
+            <img src="assets/img/usuario.png" width="80px" height="80px" alt="">
             <p>Crie uma conta!</p>
-            <input id="username" placeholder="Usuário">
-            <input id="email" placeholder="E-mail">
-            <input id="password" placeholder="Senha">
+            <input id="nome_input" placeholder="Usuário">
+            <input id="email_input" placeholder="E-mail">
+            <input id="senha_input" placeholder="Senha">
+            <input id="confsenha_input" placeholder="Confirmar senha">
             <button>INSCREVER-SE</button>
         </div>
     </div>
@@ -48,10 +52,10 @@
             </ul>
             <div class="sup_img_footer">
             <div class="img_footer">
-                <img src="img/facebookb.png" alt="" style="border: 1px solid rgb(71, 115, 197);">
-                <img src="img/twitterb.png" alt="" style="border: 1px solid rgb(216, 56, 56);">
-                <img src="img/instagramb.png" alt="" style="border: 1px solid rgb(230, 95, 95);">
-                <img src="img/youtubeb.png" alt="" style="border: 1px solid rgb(251, 255, 38);">
+                <img src="assets/img/facebookb.png" alt="" style="border: 1px solid rgb(71, 115, 197);">
+                <img src="assets/img/twitterb.png" alt="" style="border: 1px solid rgb(216, 56, 56);">
+                <img src="assets/img/instagramb.png" alt="" style="border: 1px solid rgb(230, 95, 95);">
+                <img src="assets/img/youtubeb.png" alt="" style="border: 1px solid rgb(251, 255, 38);">
             </div>
             </div>
             <br>
@@ -61,3 +65,84 @@
 </div>
 </body>
 </html>
+<script>
+    function cadastrar() {
+        aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        // var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
+
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // if (senhaVar != confirmacaoSenhaVar) {
+        //     cardErro.style.display = "block"
+        //     mensagem_erro.innerHTML = "As senhas inseridas devem ser iguais para prosseguir!";
+        //     finalizarAguardar();
+        //     return false;
+        // }
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block"
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
+                window.location = "login.html";
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>
