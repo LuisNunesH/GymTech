@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" type="imagem/png" href="assets/img/logo GymTech.PNG" />
     <title>Login - GymTech</title>
-
+    <script src="./js/funcoes.js"></script>
 
 </head>
 <body>
@@ -36,7 +36,7 @@
                 <p>Possui uma conta?</p>
                 <input id="username" placeholder="Usuário">
                 <input id="password" placeholder="Senha">
-                <button>CONECTAR-SE</button>
+                <button onclick="entrar()">CONECTAR-SE</button>
                 <a href="">Esqueci minha senha</a>
             </div>
         </div>
@@ -64,26 +64,17 @@
 </body>
 </html>
 <script>
+
+
     function entrar() {
         aguardar();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
-        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
             finalizarAguardar();
             return false;
         }
@@ -118,7 +109,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "conteudo.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

@@ -1,2 +1,0 @@
-# GymTech
-Projeto Individual - SPTech
