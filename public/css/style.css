@@ -81,6 +81,11 @@ body{
     font-family: Capsuula;
     font-size: 50px;
 }
+#corpoCc2 button{
+    padding: 20px;
+    font-weight: 800;
+    border: none;
+}
 #corpoCc2 input:focus{
     outline: 0;
     border: 1px solid rgb(94, 9, 58);
@@ -385,9 +390,12 @@ margin-left: 6%;
     display: flex;
     justify-content: center;
 
-    height: 500px;
+    height: 450px;
     padding-bottom: 50px;
   }
+   .L2{
+    height: 500px;
+}
   .caixaL button{
     margin-top: 30px;
     background-color: blueviolet;

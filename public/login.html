@@ -8,6 +8,7 @@
     <link rel="icon" type="imagem/png" href="assets/img/logo GymTech.PNG" />
     <title>Login - GymTech</title>
     <script src="./js/funcoes.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <body>
@@ -34,8 +35,8 @@
             <div class="caixaL">
                 <b>Login</b>
                 <p>Possui uma conta?</p>
-                <input id="username" placeholder="Usuário">
-                <input id="password" placeholder="Senha">
+                <input id="email_input" placeholder="E-mail">
+                <input id="senha_input" placeholder="Senha">
                 <button onclick="entrar()">CONECTAR-SE</button>
                 <a href="">Esqueci minha senha</a>
             </div>
@@ -67,7 +68,7 @@
 
 
     function entrar() {
-        aguardar();
+        // aguardar();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
@@ -110,7 +111,7 @@
 
                     setTimeout(function () {
                         window.location = "conteudo.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 300); // apenas para exibir o loading
 
                 });
 
