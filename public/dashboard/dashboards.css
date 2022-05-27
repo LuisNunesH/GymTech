@@ -13,8 +13,18 @@
     height: 100vh;
 }
 .menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 5px solid white;
     background-color: black;
     width: 100%;
     height: 130px;
+    color: white;
     position: fixed;
+}
+.menu img{
+    width: 130px;
+    height: 110px;
 }

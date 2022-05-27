@@ -36,7 +36,7 @@
                 <b>Login</b>
                 <p>Possui uma conta?</p>
                 <input id="email_input" placeholder="E-mail">
-                <input id="senha_input" placeholder="Senha">
+                <input type="password" id="senha_input" placeholder="Senha">
                 <button onclick="entrar()">CONECTAR-SE</button>
                 <a href="">Esqueci minha senha</a>
             </div>
@@ -74,9 +74,13 @@
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro...',
+                text: 'Está faltando alguma informação!',
+                width: '30%',
+                confirmButtonColor: 'rgb(45, 4, 92)',
+            })
             return false;
         }
         else {
@@ -117,12 +121,13 @@
 
             } else {
 
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
+                Swal.fire({
+                icon: 'error',
+                title: 'Erro...',
+                text: 'E-mail ou senha não estão corretos!',
+                width: '30%',
+                confirmButtonColor: 'rgb(45, 4, 92)',
+            })
             }
 
         }).catch(function (erro) {

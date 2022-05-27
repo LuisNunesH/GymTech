@@ -38,7 +38,7 @@
             <p>Crie uma conta!</p>
             <input id="nome_input" placeholder="Usuário">
             <input id="email_input" placeholder="E-mail">
-            <input id="senha_input" placeholder="Senha">
+            <input type="password" id="senha_input" placeholder="Senha">
             <input id="confirmacao_senha_input" placeholder="Confirmar senha">
             <button onclick="cadastrar()">INSCREVER-SE</button>
         </div>
@@ -83,6 +83,7 @@
                 title: 'Erro...',
                 text: 'Está faltando alguma informação!',
                 width: '30%',
+                confirmButtonColor: 'rgb(45, 4, 92)',
             })
 
             // finalizarAguardar();
@@ -101,6 +102,7 @@
                 title: 'Erro...',
                 text: 'E-mail inválido! Verifique e tente novamente.',
                 width: '30%',
+                confirmButtonColor: 'rgb(45, 4, 92)',
             })
             // finalizarAguardar();
             return false;
@@ -117,6 +119,7 @@
                 title: 'Erro...',
                 text: 'As senhas inseridas devem ser iguais para prosseguir!',
                 width: '30%',
+                confirmButtonColor: 'rgb(45, 4, 92)',
             })
             finalizarAguardar();
             return false;
@@ -150,6 +153,7 @@
                 title: 'Boa!',
                 text: 'Cadastro realizado com sucesso!',
                 width: '30%',
+                confirmButtonColor: 'rgb(45, 4, 92)',
             })
                 // window.location = "login.html";
                 setTimeout(function () {

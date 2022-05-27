@@ -229,21 +229,21 @@ a {
     display: flex;
     justify-content: center;
 }
-.ladoA .msgC{
+#ladoA #msgC{
     padding-right: 0px;
     padding-top: 0px;
     color: rgb(64, 13, 80);;
     font-size: 30px;
     font-weight: 600;
 }
-.ladoA p{
+#ladoA p{
     padding-right: 100px;
     padding-top: 30px;
     font-size: 15px;
     padding-right: 60px;
 }
- .corpoC .ladoA{
-    background-color: rgb(178, 93, 189);
+ .corpoC #ladoA{
+    background-color: #b25dbd;
     padding-left: 30px;
     width: 40%;
     display: flex;

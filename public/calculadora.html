@@ -36,7 +36,7 @@ Crianças e adolescentes devem consultar um profissional de saúde especializado
         Para ter uma estimativa, pode-se calcular o IMC e comparar o valor encontrado aos de tabelas validadas que classificam o grau de sobrepeso e obesidade para crianças e adolescentes. Você pode ver a tabela quando estiver logado!
     </p>
     <div class="corpo corpoC">
-        <div class="ladoA"><p class="msgC">Ainda não sabe qual o seu Índice de Massa Corporal (IMC)?</p>
+        <div id="ladoA"><p id="msgC">Ainda não sabe qual o seu Índice de Massa Corporal (IMC)?</p>
             
             <p>Faça o cálculo aqui mesmo e conheça mais sobre o seu corpo.</p>
         </div>
@@ -45,7 +45,7 @@ Crianças e adolescentes devem consultar um profissional de saúde especializado
             <input class="alturaa" id="altura" placeholder="Altura(m)">
             <input id="peso" placeholder="Peso(kg)">
             <br>
-            <input class= "env" type="submit" value="Calcular">
+            <input class= "env" type="submit" value="Calcular" onclick="calcular()">
         </div>
     </div>
     <div class="sup_footer">
@@ -71,3 +71,16 @@ Crianças e adolescentes devem consultar um profissional de saúde especializado
     </div>
 </body>
 </html>
+<script>
+    function calcular(){
+        if(altura.value == "" || peso.value == "" || peso.value == 0 || altura.value == 0){
+            ladoA.innerHTML = `<p style='font-size: 40px; font-family: typewcond; padding-top: 0px;'>Erro ao realizar o cálculo!</p>`;
+        }   else{
+                var al = Number(altura.value);
+                var pe = Number(peso.value);
+
+                var imc = pe / (al * al);
+                ladoA.innerHTML = `<p style='font-size: 40px; font-family: typewcond; padding-top: 0px;'>Seu IMC é: ${imc.toFixed(1)}</p>`;
+        }
+    }
+</script>
