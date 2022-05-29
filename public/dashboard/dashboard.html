@@ -63,9 +63,9 @@ else if(imc > 34.9 && imc <= 40){
 
 function publicar() {
         var idUsuario = sessionStorage.ID_USUARIO;
-
+        var iptValorIMC = valor_imc.value;
         var corpo = {
-            valor: valor_imc.value
+            valor: iptValorIMC
         }
 
         fetch(`/dashboard/publicar/${idUsuario}`, {
@@ -80,10 +80,20 @@ function publicar() {
 
             if (resposta.ok) {
                 window.alert("Informação realizada com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/dashboard.html";
-                //TESTE
 
-//TESTE
+                //TESTE
+                console.log(resposta);
+
+resposta.json().then(json => {
+    console.log(json);
+    console.log(JSON.stringify(json));
+
+    sessionStorage.IMC_USUARIO = json.sessaoIMC;
+});
+
+                // FIM DO TESTE
+
+                window.location = "/dashboard/dashboard.html";
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -95,6 +105,18 @@ function publicar() {
 
         return false;
 
+    }
+
+    function editar() {
+        fetch(`/dashboard/editar/${sessionStorage.getItem("sessaoIMC")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                valor: valor_imc.value
+            })
+        })
     }
 
 </script>

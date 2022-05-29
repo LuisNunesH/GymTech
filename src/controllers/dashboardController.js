@@ -6,7 +6,7 @@ function testar(req, res) {
 }
 
 function informar(req, res) {
-    var valor = req.body.valorServer;
+    var valor = req.body.valor;
     var idUsuario = req.params.idUsuario;
 
     if (valor == undefined) {

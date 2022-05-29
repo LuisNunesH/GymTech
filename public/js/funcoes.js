@@ -26,7 +26,7 @@ function validarSessao() {
         // if (h1LoginUsuario != undefined) {
         //     h1LoginUsuario.innerHTML = email;
         // }
-        mostrarIMC.innerHTML = sessaoIMC;
+        mostrarIMC.innerHTML = `${sessaoIMC}`;
 
         // finalizarAguardar();
     } else{

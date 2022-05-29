@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequência</title>
+</head>
+<body>
+    A OMS recomenda que, por semana, sejam gastos 300 minutos com exercícios físicos. <br>
+    Veja quanto você se exercitou nessa semana: <br><br>
+    Digite o tempo (em minutos): <input id="tempo"><br>
+    <button onclick="grav()">Gravar</button>
+    <br> Tempo total: <div id="res">0,00%</div>
+</body>
+</html>
+<script>
+    var t = [];
+    var total = 0;
+    var a = 0;
+    function grav(){
+        t.push(Number(tempo.value));
+        for(; a < t.length; a++){
+            total = total + (t[a] / 3);
+            if(total <= 100.00){
+                res.innerHTML = `${total.toFixed(1)}%`;
+            } else{
+                res.innerHTML = `${total.toFixed(1)}% Parabéns! Você está acima da média!`;
+            }
+        }
+    }
+</script>
