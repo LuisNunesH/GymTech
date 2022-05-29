@@ -1,8 +1,3 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
-
-/* para workbench - local - desenvolvimento */
 CREATE DATABASE gymtech;
 
 USE gymtech;
@@ -14,11 +9,11 @@ CREATE TABLE usuario (
 	senha VARCHAR(50)
 );
 
-
-CREATE TABLE medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	temperatura DECIMAL,
-	umidade DECIMAL,
-	momento DATETIME,
-	fk_aquario INT
+CREATE TABLE imc (
+	idIMC INT PRIMARY KEY AUTO_INCREMENT,
+	tipo VARCHAR(30),
+	valor DECIMAL(3,1),
+	fkUsuario INT,
+	CONSTRAINT cons_fk_usuario FOREIGN KEY (fkUsuario) REFERENCES usuario (id)
 );
+

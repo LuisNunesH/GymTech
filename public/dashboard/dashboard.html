@@ -6,21 +6,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dashboards.css">
     <title>Dashboards - GymTech</title>
+    <script src="../js/funcoes.js"></script>
 </head>
-<body>
-    <div class="grad">
-        Olá ssss
+<body onload="validarSessao()">
+        <div class="container_analytics">
+        <div class="analytics">
+            <h2>Bem vindo, <div id="Anome"></div></h2><br>
+            <h3>O IMC é classificado em:</h3> <br>
+            <div class="l1">
+                <div id="c1"><div id="sel">IMC</div></div>
+                <div id="c1"><div id="sel2">Menor que 18,5</div></div>
+                <div id="c1"><div id="sel3">Entre 18,5 e 24,9</div></div>
+                <div id="c1"><div id="sel4">Entre 25,0 e 29,9</div></div>
+                <div id="c1"><div id="sel5">Entre 30,0 e 39,9</div></div>
+                <div id="c1"><div id="sel6">Maior que 40,0</div></div>
+            </div>
+            <div class="l2">
+                <div class="c2" style="background-color: rgb(197, 116, 245);">Classificação</div>
+                <div class="c2" style="background-color: rgb(241, 137, 19);">Abaixo do peso</div>
+                <div class="c2" style="background-color: rgb(156, 241, 19);">Normal</div>
+                <div class="c2" style="background-color: rgb(245, 242, 53);">Sobrepeso</div>
+                <div class="c2" style="background-color: rgb(241, 137, 19);">Obesidade</div>
+                <div class="c2" style="background-color: rgb(235, 35, 35);">Obesidade grave</div>
+            </div>
+            <br>
+            Digite seu IMC <br><br>
+            <input type="text" id="valor_imc"> <br>
+            <h3>Seu IMC até o momento: <div id="mostrarIMC"></div></h3>
+            <br>
+            <button onclick="publicar()">Verificar</button>
+            <br>
+        </div>
+        </div>
         <div class="container_menu">
             <div class="menu">
                 <a href="../index.html"><img src="../assets/img/logo GymTech.png" alt=""></a>
                 <div class="m2">Situação IMC</div>
                 <div class="m3">Gráficos</div>
-                <div class="m4">Sair</div>
+                <div class="m4" onclick="limparSessao()">Sair</div>
             </div>
         </div>
-    </div>
 </body>
 </html>
 <script>
+if(imc >= 18.5 && imc < 24.9 && imc > 0){
+    sel2.style.border = '10px solid green';
+}
+ else if(imc >= 25 && imc <= 29.9){
+
+}  else if(imc >= 30 && imc <= 34.9){
+
+}
+else if(imc > 34.9 && imc <= 40){
+
+}
+
+function publicar() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            valor: valor_imc.value
+        }
+
+        fetch(`/dashboard/publicar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Informação realizada com sucesso pelo usuario de ID: " + idUsuario + "!");
+                window.location = "/dashboard/dashboard.html";
+                //TESTE
+
+//TESTE
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar informar o IMC! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+
+    }
 
 </script>

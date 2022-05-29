@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" type="imagem/png" href="assets/img/logo GymTech.PNG" />
     <title>Calculadora - GymTech</title>
-
+    <script src="./js/funcoes.js"></script>
 </head>
 <body>
     <div class="fundo3">
@@ -71,16 +71,3 @@ Crianças e adolescentes devem consultar um profissional de saúde especializado
     </div>
 </body>
 </html>
-<script>
-    function calcular(){
-        if(altura.value == "" || peso.value == "" || peso.value == 0 || altura.value == 0){
-            ladoA.innerHTML = `<p style='font-size: 40px; font-family: typewcond; padding-top: 0px;'>Erro ao realizar o cálculo!</p>`;
-        }   else{
-                var al = Number(altura.value);
-                var pe = Number(peso.value);
-
-                var imc = pe / (al * al);
-                ladoA.innerHTML = `<p style='font-size: 40px; font-family: typewcond; padding-top: 0px;'>Seu IMC é: ${imc.toFixed(1)}</p>`;
-        }
-    }
-</script>
