@@ -4,14 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboards.css">
     <title>Frequência</title>
+    <script src="../js/funcoes.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
+<body onload="validarSessao()">
+<div class="analytics container_analytics container_freq">
     A OMS recomenda que, por semana, sejam gastos 300 minutos com exercícios físicos. <br>
     Veja quanto você se exercitou nessa semana: <br><br>
-    Digite o tempo (em minutos): <input id="tempo"><br>
-    <button onclick="grav()">Gravar</button>
-    <br> Tempo total: <div id="res">0,00%</div>
+    <div>Digite o tempo (em minutos): <input id="tempo"></div><br>
+    <button onclick="grav()" class="">Gravar</button>
+    <br> Tempo total: <div id="res">0,00%</div> <br>
+    <div class="limite" style="width: 500px; background-color: black; border: 1px solid white;">
+        <div id="barra" style="height: 50px; width: 0%;"></div>
+    </div> <br>
+    <button onclick="aa()" class="">Resetar</button>
+</div>
+<div class="container_menu">
+    <div class="menu">
+        <a href="../index.html"><img src="../assets/img/logo GymTech.png" alt=""></a>
+        <a href="dashboard.html"><div class="m2">Situação IMC</div></a>
+        <a href="frequencia.html"><div class="m3">Frequência</div></a>
+        <div class="m4" onclick="limparSessao()">Sair</div>
+    </div>
+</div>
 </body>
 </html>
 <script>
@@ -19,14 +36,39 @@
     var total = 0;
     var a = 0;
     function grav(){
-        t.push(Number(tempo.value));
-        for(; a < t.length; a++){
+        if(tempo.value <= 0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro...',
+                text: 'Tempo inválido! Verifique e tente novamente.',
+                width: '30%',
+                confirmButtonColor: 'rgb(255, 0, 242)',
+            })
+        } else{
+            t.push(Number(tempo.value));
+            for(; a < t.length; a++){
             total = total + (t[a] / 3);
             if(total <= 100.00){
+                if(total <= 50){
+                    barra.style.background = 'red';
+                } else if(total <= 80){
+                    barra.style.background = 'yellow';
+                } else if(total >= 90){
+                    barra.style.background = '#51ff00';
+                }
+                barra.style.width = total+'%';
                 res.innerHTML = `${total.toFixed(1)}%`;
             } else{
-                res.innerHTML = `${total.toFixed(1)}% Parabéns! Você está acima da média!`;
+                barra.style.background = '#51ff00';
+                barra.style.width = '100%';
+                res.innerHTML = `${total.toFixed(1)}%`;
             }
         }
+        }
     }
+function aa(){
+    total = 0;
+    barra.style.width = '0%';
+    res.innerHTML = `${total.toFixed(1)}%`;
+}
 </script>

@@ -16,3 +16,9 @@ CREATE TABLE imc (
 	CONSTRAINT cons_fk_usuario FOREIGN KEY (fkUsuario) REFERENCES usuario (id)
 );
 select * from imc;
+CREATE TABLE frequencia (
+	idFREQUENCIA INT PRIMARY KEY AUTO_INCREMENT,
+	qtd DECIMAL,
+	fkUsuario INT,
+	CONSTRAINT cons_fk_usuario2 FOREIGN KEY (fkUsuario) REFERENCES usuario (id)
+);
