@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="dashboards.css">
     <title>Dashboards - GymTech</title>
     <script src="../js/funcoes.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body onload="validarSessao()">
         <div class="container_analytics">
@@ -79,8 +80,13 @@ function publicar() {
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Informação realizada com sucesso pelo usuario de ID: " + idUsuario + "!");
-
+                Swal.fire({
+                icon: 'success',
+                title: 'IMC registrado!',
+                text: "Informação realizada com sucesso pelo usuario de ID: " + idUsuario + "!",
+                width: '30%',
+                confirmButtonColor: 'rgb(45, 4, 92)',
+            })
                 //TESTE
                 console.log(resposta);
 
@@ -93,7 +99,7 @@ resposta.json().then(json => {
 
                 // FIM DO TESTE
 
-                window.location = "/dashboard/dashboard.html";
+
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
