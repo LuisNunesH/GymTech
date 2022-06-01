@@ -14,12 +14,33 @@ function informar(req, res) {
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        dashboardModel.informar(valor, idUsuario)
+        dashboardModel.verificarExistencia(idUsuario)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    if(resultado == 0){
+                        dashboardModel.informar(valor, idUsuario)
+                            .then(
+                                function (resultado) {
+                                    res.json(resultado);
+                                }
+                            )
+                    }else{
+                        dashboardModel.editar(valor, idUsuario)
+                            .then(
+                                function (resultado) {
+                                    res.json(resultado);
+                                }
+                            )
+                    }
+                    
                 }
             )
+        // dashboardModel.informar(valor, idUsuario)
+        //     .then(
+        //         function (resultado) {
+        //             res.json(resultado);
+        //         }
+        //     )
             .catch(
                 function (erro) {
                     console.log(erro);

@@ -21,16 +21,16 @@ function validarSessao() {
         window.location = "./login.html";
     }
 
-    if (sessaoIMC != null) {
+    if (sessaoIMC == undefined) {
         // window.alert(`Seja bem-vindo, ${nome}!`);
         // if (h1LoginUsuario != undefined) {
         //     h1LoginUsuario.innerHTML = email;
         // }
-        mostrarIMC.innerHTML = `${sessaoIMC}`;
+        mostrarIMC.innerHTML = 'Nenhum valor inserido';
 
         // finalizarAguardar();
     } else{
-        mostrarIMC.innerHTML = 'Nenhum valor inserido';
+        mostrarIMC.innerHTML = sessaoIMC;
     }
 }
 

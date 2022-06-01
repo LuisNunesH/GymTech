@@ -21,18 +21,36 @@ function listar() {
 }
 
 function informar(valor, idUsuario) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", valor, idUsuario);
+    if (valor != null) {
+        console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", valor, idUsuario);
+        var instrucao = `
+            INSERT INTO imc (valor, fkUsuario) VALUES ('${valor}', ${idUsuario});
+        `;
+        console.log("Executando a instrução SQL: \n" + instrucao);
+        return database.executar(instrucao);
+    }
+    else{
+        console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", valor, idUsuario);
+        var instrucao = `
+            INSERT INTO imc (valor, fkUsuario) VALUES ('${valor}', ${idUsuario});
+        `;
+        console.log("Executando a instrução SQL: \n" + instrucao);
+        return database.executar(instrucao);
+    }
+}
+
+function editar(valor, idUsuario) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", valor, idUsuario);
     var instrucao = `
-        INSERT INTO imc (valor, fkUsuario) VALUES ('${valor}', ${idUsuario});
+        UPDATE imc SET valor = ('${valor}') where idIMC = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function editar(novoValor, idIMC) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novaDescricao, idAviso);
+function verificarExistencia(idUsuario){
     var instrucao = `
-        UPDATE imc SET valor = '${novoValor}' WHERE id = ${idIMC};
+        SELECT * FROM imc where fkUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -41,4 +59,5 @@ function editar(novoValor, idIMC) {
 module.exports = {
     informar,
     editar,
+    verificarExistencia
 }

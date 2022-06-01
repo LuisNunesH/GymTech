@@ -86,7 +86,10 @@ function publicar() {
                 text: "Informação realizada com sucesso pelo usuario de ID: " + idUsuario + "!",
                 width: '30%',
                 confirmButtonColor: 'rgb(45, 4, 92)',
-            })
+            }) 
+            setTimeout(function () {
+                        window.location = "dashboard.html";
+                    }, 2000);
                 //TESTE
                 console.log(resposta);
 
