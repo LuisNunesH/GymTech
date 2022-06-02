@@ -51,30 +51,10 @@ function informar(req, res) {
     }
 }
 
-function editar(req, res) {
-    var novoValor = req.body.valor;
-    var idIMC = req.params.idIMC;
-
-    dashboardModel.editar(novoValor, idIMC)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-
-}
-
 function exibir(req, res) {
-    var idIMC = req.params.idIMC;
+    var idUsuario = req.params.idUsuario;
 
-    dashboardModel.exibir(idIMC)
+    dashboardModel.exibir(idUsuario)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -93,6 +73,5 @@ function exibir(req, res) {
 module.exports = {
     testar,
     informar,
-    editar,
     exibir
 }

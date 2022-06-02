@@ -50,6 +50,10 @@
 </body>
 </html>
 <script>
+    var idUsuario = sessionStorage.ID_USUARIO;
+    setTimeout(() => {
+        exibirIMC();
+    }, 5000);
 if(imc >= 18.5 && imc < 24.9 && imc > 0){
     sel2.style.border = '10px solid green';
 }
@@ -61,15 +65,16 @@ if(imc >= 18.5 && imc < 24.9 && imc > 0){
 else if(imc > 34.9 && imc <= 40){
 
 }
+var iptValorIMC = 0;
 function publicar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
-        var iptValorIMC = valor_imc.value;
+        
+        iptValorIMC = valor_imc.value;
         var corpo = {
             valor: iptValorIMC
         }
 
         fetch(`/dashboard/publicar/${idUsuario}`, {
-            method: "post",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -86,24 +91,26 @@ function publicar() {
                 width: '30%',
                 confirmButtonColor: 'rgb(45, 4, 92)',
             }) 
-            setTimeout(function () {
-                        window.location = "dashboard.html";
-                    }, 2000);
-            //TESTE -------------------------------------------------
-        fetch("/dashboard/exibir").then(function (resposta) {
-            if (resposta.ok) {
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+            location.reload();
 
-                        mostrarIMC.innerHTML = idUsuario;
+            //TESTE -------------------------------------------------
+        // fetch("/dashboard/exibir",.then(function (resposta) {
+        //     if (resposta.ok) {
+        //         resposta.json().then(json => {
+        //             console.log(json);
+        //             console.log(JSON.stringify(json));
+
+        //             sessionStorage.IMC_USUARIO = json.idUsuario;
                     
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-        });
+        //         });
+        //     } else {
+        //         throw ('Houve um erro na API!');
+        //     }
+        // }).catch(function (resposta) {
+        //     console.error(resposta);
+        // }));
+
+       
         //FIM DO TESTE --------------------------------------
 
                 //TESTE
@@ -144,4 +151,41 @@ function publicar() {
         })
     }
 
+function exibirIMC(){
+    fetch(`/dashboard/exibir/${idUsuario}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            valorServer: iptValorIMC
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+
+                sessionStorage.IMC_USUARIO = json.valor;
+                mostrarIMC.innerHTML = json[0].valor;
+                // Fazer fetch/controller/model
+                // SELECT valor FROM imc WHERE idUsuario = id
+                 // apenas para exibir o loading
+
+            });
+
+        } else {
+
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
+}
 </script>

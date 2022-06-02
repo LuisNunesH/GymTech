@@ -49,9 +49,8 @@ function editar(valor, idUsuario) {
 }
 
 function exibir(idUsuario) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", valor, idUsuario);
     var instrucao = `
-        SELECT valor FROM imc JOIN usuario on idIMC =  ${idUsuario} where idIMC = ${idUsuario};
+        SELECT valor FROM imc where fkUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

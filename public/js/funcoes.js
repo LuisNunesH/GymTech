@@ -1,3 +1,5 @@
+const { exibir } = require("../../src/models/dashboardModel");
+
 // sessão
 function validarSessao() {
     // aguardar();
@@ -30,7 +32,7 @@ function validarSessao() {
 
         // finalizarAguardar();
     } else{
-        mostrarIMC.innerHTML = sessaoIMC;
+        mostrarIMC.innerHTML = valor;
     }
 }
 

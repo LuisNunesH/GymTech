@@ -19,7 +19,7 @@ router.put("/editar/:idIMC", function (req, res) {
     dashboardController.editar(req, res);
 });
 
-router.put("/exibir/:idUsuario", function (req, res) {
+router.post("/exibir/:idUsuario", function (req, res) {
     dashboardController.exibir(req, res);
 });
 
