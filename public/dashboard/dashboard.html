@@ -61,7 +61,6 @@ if(imc >= 18.5 && imc < 24.9 && imc > 0){
 else if(imc > 34.9 && imc <= 40){
 
 }
-
 function publicar() {
         var idUsuario = sessionStorage.ID_USUARIO;
         var iptValorIMC = valor_imc.value;
@@ -90,15 +89,32 @@ function publicar() {
             setTimeout(function () {
                         window.location = "dashboard.html";
                     }, 2000);
+            //TESTE -------------------------------------------------
+        fetch("/dashboard/exibir").then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                        mostrarIMC.innerHTML = idUsuario;
+                    
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+        //FIM DO TESTE --------------------------------------
+
                 //TESTE
-                console.log(resposta);
+//                 console.log(resposta);
 
-resposta.json().then(json => {
-    console.log(json);
-    console.log(JSON.stringify(json));
+// resposta.json().then(json => {
+//     console.log(json);
+//     console.log(JSON.stringify(json));
 
-    sessionStorage.IMC_USUARIO = json.sessaoIMC;
-});
+//     sessionStorage.IMC_USUARIO = json.sessaoIMC;
+// });
 
                 // FIM DO TESTE
 
