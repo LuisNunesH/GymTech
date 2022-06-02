@@ -21,6 +21,10 @@ a{
     text-decoration: none;
     color: white;
 }
+#mostrarIMC{
+    display: flex;
+    justify-content: center;
+}
 .menu{
     display: flex;
     flex-direction: row;

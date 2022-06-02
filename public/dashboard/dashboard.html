@@ -53,7 +53,7 @@
     var idUsuario = sessionStorage.ID_USUARIO;
     setTimeout(() => {
         exibirIMC();
-    }, 5000);
+    }, 1000);
 if(imc >= 18.5 && imc < 24.9 && imc > 0){
     sel2.style.border = '10px solid green';
 }
@@ -91,40 +91,10 @@ function publicar() {
                 width: '30%',
                 confirmButtonColor: 'rgb(45, 4, 92)',
             }) 
-            location.reload();
-
-            //TESTE -------------------------------------------------
-        // fetch("/dashboard/exibir",.then(function (resposta) {
-        //     if (resposta.ok) {
-        //         resposta.json().then(json => {
-        //             console.log(json);
-        //             console.log(JSON.stringify(json));
-
-        //             sessionStorage.IMC_USUARIO = json.idUsuario;
-                    
-        //         });
-        //     } else {
-        //         throw ('Houve um erro na API!');
-        //     }
-        // }).catch(function (resposta) {
-        //     console.error(resposta);
-        // }));
-
-       
-        //FIM DO TESTE --------------------------------------
-
-                //TESTE
-//                 console.log(resposta);
-
-// resposta.json().then(json => {
-//     console.log(json);
-//     console.log(JSON.stringify(json));
-
-//     sessionStorage.IMC_USUARIO = json.sessaoIMC;
-// });
-
-                // FIM DO TESTE
-
+            setTimeout(() => {
+                window.location = "dashboard.html";
+            }, 2000);
+            // location.reload();
 
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");

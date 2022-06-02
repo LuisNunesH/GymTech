@@ -9,6 +9,7 @@ CREATE TABLE usuario (
 );
 select * from usuario;
 CREATE TABLE imc (
+
 	idIMC INT PRIMARY KEY AUTO_INCREMENT,
 	tipo VARCHAR(30),
 	valor DECIMAL(3,1) check (valor > 0 and valor < 45),
@@ -22,3 +23,5 @@ CREATE TABLE frequencia (
 	fkUsuario INT,
 	CONSTRAINT cons_fk_usuario2 FOREIGN KEY (fkUsuario) REFERENCES usuario (id)
 );
+SELECT valor FROM imc JOIN usuario on idIMC = 1 where idIMC = 1;
+SELECT valor FROM imc where fkUsuario = 1;
