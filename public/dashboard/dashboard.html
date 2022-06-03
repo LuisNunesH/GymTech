@@ -51,9 +51,9 @@
 </html>
 <script>
     var idUsuario = sessionStorage.ID_USUARIO;
-    setTimeout(() => {
+    // setTimeout(() => {
         exibirIMC();
-    }, 1000);
+    // }, 0);
 if(imc >= 18.5 && imc < 24.9 && imc > 0){
     sel2.style.border = '10px solid green';
 }
@@ -142,6 +142,17 @@ function exibirIMC(){
 
                 sessionStorage.IMC_USUARIO = json.valor;
                 mostrarIMC.innerHTML = json[0].valor;
+                if(json[0].valor < 18.5){
+                    mostrarIMC.innerHTML = `<span style='color: rgb(241, 137, 19);'>${json[0].valor}</span>`;
+                } else if(json[0].valor >= 18.5 && json[0].valor <= 24.9){
+                    mostrarIMC.innerHTML = `<span style='color: rgb(156, 241, 19);'>${json[0].valor}</span>`;
+                 } else if(json[0].valor >= 25 && json[0].valor <= 29.9){
+                    mostrarIMC.innerHTML = `<span style='color: rgb(245, 242, 53);'>${json[0].valor}</span>`;
+                 } else if(json[0].valor >= 30 && json[0].valor <= 34.9){
+                    mostrarIMC.innerHTML = `<span style='color: rgb(241, 137, 19);'>${json[0].valor}</span>`;
+                 } else if(json[0].valor > 40){
+                    mostrarIMC.innerHTML = `<span style='color: rgb(235, 35, 35); background-color: black; border-radius: 10px; padding: 2px;'>${json[0].valor}</span>`;
+                 }
                 // Fazer fetch/controller/model
                 // SELECT valor FROM imc WHERE idUsuario = id
                  // apenas para exibir o loading
