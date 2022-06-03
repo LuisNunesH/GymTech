@@ -1,4 +1,4 @@
-const { exibir } = require("../../src/models/dashboardModel");
+// const { exibir } = require("../../src/models/dashboardModel");
 
 // sessão
 function validarSessao() {
@@ -23,17 +23,17 @@ function validarSessao() {
         window.location = "./login.html";
     }
 
-    if (sessaoIMC == undefined) {
-        // window.alert(`Seja bem-vindo, ${nome}!`);
-        // if (h1LoginUsuario != undefined) {
-        //     h1LoginUsuario.innerHTML = email;
-        // }
-        mostrarIMC.innerHTML = 'Nenhum valor inserido';
+    // if (sessaoIMC == undefined || sessaoIMC == null) {
+    //     // window.alert(`Seja bem-vindo, ${nome}!`);
+    //     // if (h1LoginUsuario != undefined) {
+    //     //     h1LoginUsuario.innerHTML = email;
+    //     // }
+    //     mostrarIMC.innerHTML = 'Nenhum valor inserido';
 
-        // finalizarAguardar();
-    } else{
-        mostrarIMC.innerHTML = valor;
-    }
+    //     // finalizarAguardar();
+    // } else{
+    //     // mostrarIMC.innerHTML = valor;
+    // }
 }
 
 function limparSessao() {

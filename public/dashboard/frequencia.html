@@ -36,7 +36,8 @@
     var total = 0;
     var a = 0;
     function grav(){
-        if(tempo.value <= 0){
+        var i = Number(tempo.value);
+        if(tempo.value <= 0 || i == NaN){
             Swal.fire({
                 icon: 'error',
                 title: 'Erro...',

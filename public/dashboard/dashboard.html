@@ -20,7 +20,7 @@
                 <div id="c1"><div id="sel3">Entre 18,5 e 24,9</div></div>
                 <div id="c1"><div id="sel4">Entre 25,0 e 29,9</div></div>
                 <div id="c1"><div id="sel5">Entre 30,0 e 39,9</div></div>
-                <div id="c1"><div id="sel6">Maior que 40,0</div></div>
+                <div id="c1"><div id="sel6">Maior ou igual a 40,0</div></div>
             </div>
             <div class="l2">
                 <div class="c2" style="background-color: rgb(197, 116, 245);">Classificação</div>
@@ -33,7 +33,7 @@
             <br>
             Digite seu IMC <br><br>
             <input type="text" id="valor_imc"> <br>
-            <h3>Seu IMC até o momento: <div id="mostrarIMC"></div></h3>
+            <h3>Seu IMC até o momento: <div id="mostrarIMC">Nenhum valor inserido</div></h3>
             <br>
             <button onclick="publicar()">Verificar</button>
             <br>
@@ -54,17 +54,6 @@
     // setTimeout(() => {
         exibirIMC();
     // }, 0);
-if(imc >= 18.5 && imc < 24.9 && imc > 0){
-    sel2.style.border = '10px solid green';
-}
- else if(imc >= 25 && imc <= 29.9){
-
-}  else if(imc >= 30 && imc <= 34.9){
-
-}
-else if(imc > 34.9 && imc <= 40){
-
-}
 var iptValorIMC = 0;
 function publicar() {
         
@@ -148,9 +137,9 @@ function exibirIMC(){
                     mostrarIMC.innerHTML = `<span style='color: rgb(156, 241, 19);'>${json[0].valor}</span>`;
                  } else if(json[0].valor >= 25 && json[0].valor <= 29.9){
                     mostrarIMC.innerHTML = `<span style='color: rgb(245, 242, 53);'>${json[0].valor}</span>`;
-                 } else if(json[0].valor >= 30 && json[0].valor <= 34.9){
+                 } else if(json[0].valor >= 30 && json[0].valor <= 39.9){
                     mostrarIMC.innerHTML = `<span style='color: rgb(241, 137, 19);'>${json[0].valor}</span>`;
-                 } else if(json[0].valor > 40){
+                 } else if(json[0].valor >= 40){
                     mostrarIMC.innerHTML = `<span style='color: rgb(235, 35, 35); background-color: black; border-radius: 10px; padding: 2px;'>${json[0].valor}</span>`;
                  }
                 // Fazer fetch/controller/model
