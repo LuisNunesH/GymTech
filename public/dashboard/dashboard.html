@@ -140,7 +140,7 @@ function exibirIMC(){
                  } else if(json[0].valor >= 30 && json[0].valor <= 39.9){
                     mostrarIMC.innerHTML = `<span style='color: rgb(241, 137, 19);'>${json[0].valor}</span>`;
                  } else if(json[0].valor >= 40){
-                    mostrarIMC.innerHTML = `<span style='color: rgb(235, 35, 35); background-color: black; border-radius: 10px; padding: 2px;'>${json[0].valor}</span>`;
+                    mostrarIMC.innerHTML = `<span style='color: rgb(95, 5, 50);  border-radius: 10px; padding: 1px;'>${json[0].valor}</span>`;
                  }
                 // Fazer fetch/controller/model
                 // SELECT valor FROM imc WHERE idUsuario = id

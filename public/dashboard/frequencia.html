@@ -11,7 +11,7 @@
 </head>
 <body onload="validarSessao()">
 <div class="analytics container_analytics container_freq">
-    A OMS recomenda que, por semana, sejam gastos 300 minutos com exercícios físicos. <br>
+    A OMS recomenda que, por semana, sejam gastos 300 minutos com exercícios físicos <br>
     Veja quanto você se exercitou nessa semana: <br><br>
     <div>Digite o tempo (em minutos): <input id="tempo"></div><br>
     <button onclick="grav()" class="">Gravar</button>
@@ -35,9 +35,10 @@
     var t = [];
     var total = 0;
     var a = 0;
+    var tem = 0;
     function grav(){
-        var i = Number(tempo.value);
-        if(tempo.value <= 0 || i == NaN){
+        tem = Number(tempo.value);
+        if(tem <= 0 || isNaN(tem)){
             Swal.fire({
                 icon: 'error',
                 title: 'Erro...',
