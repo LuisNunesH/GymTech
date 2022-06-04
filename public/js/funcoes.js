@@ -8,9 +8,6 @@ function validarSessao() {
     var nome = sessionStorage.NOME_USUARIO;
     var sessaoIMC = sessionStorage.IMC_USUARIO;
 
-     var Anome = document.getElementById("Anome");
-     var mostrarIMC = document.getElementById("mostrarIMC");
-
     if (email != null && nome != null) {
         // window.alert(`Seja bem-vindo, ${nome}!`);
         // if (h1LoginUsuario != undefined) {

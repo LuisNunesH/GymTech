@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dashboards.css">
-    <title>Dashboards - GymTech</title>
+    <title>IMC - GymTech</title>
     <script src="../js/funcoes.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -98,18 +98,6 @@ function publicar() {
 
     }
 
-    function editar() {
-        fetch(`/dashboard/editar/${sessionStorage.getItem("sessaoIMC")}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                valor: valor_imc.value
-            })
-        })
-    }
-
 function exibirIMC(){
     fetch(`/dashboard/exibir/${idUsuario}`, {
         method: "POST",
@@ -142,9 +130,6 @@ function exibirIMC(){
                  } else if(json[0].valor >= 40){
                     mostrarIMC.innerHTML = `<span style='color: rgb(95, 5, 50);  border-radius: 10px; padding: 1px;'>${json[0].valor}</span>`;
                  }
-                // Fazer fetch/controller/model
-                // SELECT valor FROM imc WHERE idUsuario = id
-                 // apenas para exibir o loading
 
             });
 

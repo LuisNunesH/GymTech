@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dashboards.css">
     <title>Frequência</title>
-    <script src="../js/funcoes.js"></script>
+    <script src="../js/funcoesFre.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body onload="validarSessao()">
@@ -32,10 +32,12 @@
 </body>
 </html>
 <script>
+    var idUsuario = sessionStorage.ID_USUARIO;
     var t = [];
     var total = 0;
     var a = 0;
     var tem = 0;
+
     function grav(){
         tem = Number(tempo.value);
         if(tem <= 0 || isNaN(tem)){
@@ -50,6 +52,7 @@
             t.push(Number(tempo.value));
             for(; a < t.length; a++){
             total = total + (t[a] / 3);
+            
             if(total <= 100.00){
                 if(total <= 50){
                     barra.style.background = 'red';
@@ -60,11 +63,14 @@
                 }
                 barra.style.width = total+'%';
                 res.innerHTML = `${total.toFixed(1)}%`;
+                // window.location = "frequencia.html";
             } else{
                 barra.style.background = '#51ff00';
                 barra.style.width = '100%';
                 res.innerHTML = `${total.toFixed(1)}%`;
+                // window.location = "frequencia.html";
             }
+            registrarFre();
         }
         }
     }
@@ -72,5 +78,42 @@ function aa(){
     total = 0;
     barra.style.width = '0%';
     res.innerHTML = `${total.toFixed(1)}%`;
+}
+ 
+function registrarFre(){
+    var iptTem = tempo.value;
+
+    var corpoB = {
+            valorB: total
+        }
+if(tempo.value == ''){
+}else{
+    fetch(`/frequencia/registrarFre/${idUsuario}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(corpoB)
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+            });
+
+        } else {
+
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
+}
 }
 </script>

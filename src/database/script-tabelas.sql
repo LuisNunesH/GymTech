@@ -19,7 +19,7 @@ CREATE TABLE imc (
 select * from imc;
 CREATE TABLE frequencia (
 	idFREQUENCIA INT PRIMARY KEY AUTO_INCREMENT,
-	qtd DECIMAL,
+	qtd DECIMAL(4,1),
 	fkUsuario INT,
 	CONSTRAINT cons_fk_usuario2 FOREIGN KEY (fkUsuario) REFERENCES usuario (id)
 );
