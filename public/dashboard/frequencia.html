@@ -14,8 +14,8 @@
     A OMS recomenda que, por semana, sejam gastos 300 minutos com exercícios físicos <br>
     Veja quanto você se exercitou nessa semana: <br><br>
     <div>Digite o tempo (em minutos): <input id="tempo"></div><br>
-    <button onclick="grav()" class="">Gravar</button>
-    <br> Tempo total: <div id="res">0,00%</div> <br>
+    <button onclick="grav()" class="">Gravar</button> <br>
+    <div id="msg">Tempo total anterior:</div> <div id="res">0,00%</div> <br>
     <div class="limite" style="width: 500px; background-color: black; border: 1px solid white;">
         <div id="barra" style="height: 50px; width: 0%;"></div>
     </div> <br>
@@ -36,9 +36,12 @@
     var t = [];
     var total = 0;
     var a = 0;
+    var aux_ex = 0;
+    var ex = 0;
     var tem = 0;
-
+    exibirFrequencia();
     function grav(){
+        msg.innerHTML = 'Tempo total atual: ';
         tem = Number(tempo.value);
         if(tem <= 0 || isNaN(tem)){
             Swal.fire({
@@ -115,5 +118,55 @@ if(tempo.value == ''){
 
     return false;
 }
+}
+function exibirFrequencia(){
+    fetch(`/frequencia/exibirFre/${idUsuario}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            valorServer: total
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+
+                ex = json[0].tempo;
+                barra.style.width = ex + '%';
+                if(ex <= 100.00){
+                if(ex <= 50){
+                    barra.style.background = 'red';
+                } else if(ex <= 80){
+                    barra.style.background = 'yellow';
+                } else if(ex >= 90){
+                    barra.style.background = '#51ff00';
+                }
+                barra.style.width = ex+'%';
+                res.innerHTML = `${ex}%`;
+                // window.location = "frequencia.html";
+            } else{
+                barra.style.background = '#51ff00';
+                barra.style.width = '100%';
+                res.innerHTML = `${ex}%`;
+                // window.location = "frequencia.html";
+            }
+            });
+
+        } else {
+
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
 }
 </script>

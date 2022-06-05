@@ -4,7 +4,7 @@ function informar(valorB, idUsuario) {
     if (valorB != null) {
         console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", valorB, idUsuario);
         var instrucao = `
-            INSERT INTO frequencia (qtd, fkUsuario) VALUES ('${valorB}', ${idUsuario});
+            INSERT INTO frequencia (tempo, fkUsuario) VALUES ('${valorB}', ${idUsuario});
         `;
         console.log("Executando a instrução SQL: \n" + instrucao);
         return database.executar(instrucao);
@@ -12,7 +12,7 @@ function informar(valorB, idUsuario) {
     else{
         console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", valorB, idUsuario);
         var instrucao = `
-            INSERT INTO frequencia (qtd, fkUsuario) VALUES ('${valorB}', ${idUsuario});
+            INSERT INTO frequencia (tempo, fkUsuario) VALUES ('${valorB}', ${idUsuario});
         `;
         console.log("Executando a instrução SQL: \n" + instrucao);
         return database.executar(instrucao);
@@ -22,7 +22,7 @@ function informar(valorB, idUsuario) {
 function editar(valorB, idUsuario) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", valorB, idUsuario);
     var instrucao = `
-        UPDATE frequencia SET qtd = ('${valorB}') where fkUsuario = ${idUsuario};
+        UPDATE frequencia SET tempo = ('${valorB}') where fkUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -36,8 +36,17 @@ function verificarExistencia(idUsuario){
     return database.executar(instrucao);
 }
 
+function exibirFrequencia(idUsuario) {
+    var instrucao = `
+        SELECT tempo FROM frequencia where fkUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     informar,
     editar,
-    verificarExistencia
+    verificarExistencia,
+    exibirFrequencia
 }
