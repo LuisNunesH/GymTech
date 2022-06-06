@@ -4,12 +4,11 @@ DROP DATABASE gymtech;
 CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(50),
-	email VARCHAR(50),
+	email VARCHAR(50) UNIQUE,
 	senha VARCHAR(50)
 );
 select * from usuario;
 CREATE TABLE imc (
-
 	idIMC INT PRIMARY KEY AUTO_INCREMENT,
 	tipo VARCHAR(30),
 	valor DECIMAL(3,1) check (valor > 0 and valor < 45),
@@ -19,7 +18,7 @@ CREATE TABLE imc (
 select * from imc;
 CREATE TABLE frequencia (
 	idFREQUENCIA INT PRIMARY KEY AUTO_INCREMENT,
-	qtd DECIMAL(4,1),
+	tempo DECIMAL(4,1),
 	fkUsuario INT,
 	CONSTRAINT cons_fk_usuario2 FOREIGN KEY (fkUsuario) REFERENCES usuario (id)
 );

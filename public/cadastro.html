@@ -12,7 +12,7 @@
 
 
 </head>
-<body>
+<body style="background-color: rgba(0, 0, 0, 0.445);">
 <div class="fundo">
     <div class="menu">
         <div class="imagem_menu">
@@ -47,7 +47,7 @@
         <div class="footer">
             <ul>
                 <li class="Tfont"><a href=index.html>Início</li></a>
-                <li class="Tfont">Sobre</li>
+                <li class="Tfont"><a href=IMC.html>Sobre</li></a>
                 <li class="Tfont">Serviços</li>
                 <li class="Tfont">Contato</li>
             </ul>
@@ -144,7 +144,13 @@
         }).then(function (resposta) {
 
             console.log("resposta: ", resposta);
-
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro!',
+                text: 'E-mail já cadastrado!',
+                width: '20%',
+                confirmButtonColor: 'rgb(45, 4, 92)',
+            })
             if (resposta.ok) {
                 // cardErro.style.display = "block"
                 // mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
