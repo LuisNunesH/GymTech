@@ -127,7 +127,17 @@
         else {
             // setInterval(sumirMensagem, 5000)
         }
-
+        if(senhaVar.length < 5){
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro...',
+                text: 'Senha muito pequena!',
+                width: '30%',
+                confirmButtonColor: 'rgb(45, 4, 92)',
+            })
+            return false;
+        } else{
+        }
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
             method: "POST",
