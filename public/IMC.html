@@ -8,8 +8,7 @@
     <link rel="icon" type="imagem/png" href="assets/img/logo GymTech.PNG" />
     <!-- <script src="./js/funcoes.js"></script> -->
     <title>Sobre - GymTech</title>
-
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body onload="validarSessao()">
 <div class="fundo fundo4">
@@ -78,6 +77,16 @@
 <script>
     function imc(){
     var imc = inptIMC.value;
+    if(imc == '' || imc <= 0 || isNaN(imc)){
+        Swal.fire({
+                icon: 'error',
+                title: 'Erro...',
+                text: 'IMC inválido! Verifique e tente novamente.',
+                width: '30%',
+                confirmButtonColor: 'rgb(148,0,211)',
+            })
+    }
+    else{
     if(imc < 18.5){
         corpoCc2.style.display = 'none';
         b2.innerHTML = `<img src="assets/img/magro.png" style="heigth: 150px; width: 150px;">`;
@@ -151,6 +160,7 @@ Sinal vermelho! Ao atingir este nível de IMC, o risco de doenças associadas es
 
 * Cálculos válidos apenas para pessoas adultas. <br>
 `;
+}
 }
 }
 </script>
