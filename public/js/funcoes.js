@@ -31,7 +31,7 @@ function limparSessao() {
 
 
 function calcular(){
-    if(altura.value == "" || peso.value == "" || peso.value == 0 || altura.value == 0){
+    if(altura.value == "" || peso.value == "" || peso.value <= 0 || altura.value <= 0 || isNaN(altura.value)){
         ladoA.innerHTML = `<p style='font-size: 40px; font-family: typewcond; padding-top: 0px;'>Erro ao realizar o cálculo!</p>`;
     }   else{
             var al = Number(altura.value);
