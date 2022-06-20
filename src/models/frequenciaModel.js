@@ -44,9 +44,18 @@ function exibirFrequencia(idUsuario) {
     return database.executar(instrucao);
 }
 
+function resetarFrequencia(idUsuario) {
+    var instrucao = `
+        UPDATE frequencia SET tempo = 0 WHERE fkUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     informar,
     editar,
     verificarExistencia,
-    exibirFrequencia
+    exibirFrequencia,
+    resetarFrequencia
 }

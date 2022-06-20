@@ -11,4 +11,8 @@ router.post("/exibirFre/:idUsuario", function (req, res) {
     frequenciaController.exibirFre(req, res);
 });
 
+router.post("/resetarFre/:idUsuario", function (req, res) {
+    frequenciaController.resetarFre(req, res);
+});
+
 module.exports = router;

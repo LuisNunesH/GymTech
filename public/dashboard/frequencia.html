@@ -81,6 +81,37 @@ function aa(){
     total = 0;
     barra.style.width = '0%';
     res.innerHTML = `${total.toFixed(1)}%`;
+
+    var corpoB = {
+            valorB: total
+    }
+
+    fetch(`/frequencia/resetarFre/${idUsuario}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(corpoB)
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+            });
+
+        } else {
+
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
 }
  
 function registrarFre(){
